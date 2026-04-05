@@ -54,8 +54,10 @@ def get_rope(
     rotary_dim: int,
     max_position: int,
     base: float,
-    rope_scaling: dict | None = None,
+    rope_scaling: tuple | None = None,
 ):
-    assert rope_scaling is None
+    if rope_scaling is not None:
+        rope_scaling = dict(rope_scaling)
+    assert rope_scaling is None or rope_scaling.get("rope_type") == "default"
     rotary_emb = RotaryEmbedding(head_size, rotary_dim, max_position, base)
     return rotary_emb
