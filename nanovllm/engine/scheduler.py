@@ -105,7 +105,7 @@ class Scheduler:
         self.block_manager.deallocate(seq)
         self.waiting.appendleft(seq)
 
-    def postprocess(self, seqs: list[Sequence], token_ids: list[int]) -> list[bool]:
+    def postprocess(self, seqs: list[Sequence], token_ids: list[int]):
         """
         每个 step 完成后的后处理：
         1. 将新生成的 token 追加到各序列
